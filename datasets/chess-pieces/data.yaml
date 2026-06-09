@@ -1,0 +1,6 @@
+path: C:\Users\Usuario\Desktop\AURA\vision-aura-chess2-main\datasets\chess-pieces
+train: train/images
+val: valid/images
+test: test/images
+nc: 12
+names: ['black-bishop', 'black-king', 'black-knight', 'black-pawn', 'black-queen', 'black-rook', 'white-bishop', 'white-king', 'white-knight', 'white-pawn', 'white-queen', 'white-rook']
