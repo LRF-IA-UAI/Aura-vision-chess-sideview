@@ -84,12 +84,13 @@ class PieceDetector:
     # YOLO detection
     # ------------------------------------------------------------------
 
-    def detect_yolo(self, frame, cal_matrix, confidence=0.25):
+    def detect_yolo(self, frame, cal_matrix, confidence=0.15):
         if self.model is None:
             return None
 
         input_img = _enhance_contrast(frame) if self.use_clahe else frame
-        results = self.model(input_img, conf=confidence, verbose=False)
+        # iou=0.6 allows more overlapping bounding boxes to coexist without being suppressed
+        results = self.model(input_img, conf=confidence, iou=0.6, verbose=False)
 
         raw = []
         best = {}     # (row,col) -> Detection (highest conf per cell)
