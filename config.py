@@ -7,8 +7,8 @@ MODELS_DIR = os.path.join(PROJECT_DIR, "models")
 
 # Rectified board size in pixels
 BOARD_SIZE = 800
-# Red border width as fraction of board (crop after warp)
-BORDER_MARGIN = 0.05
+# Red border width as fraction of board (baked into transformation matrix)
+BORDER_MARGIN = 0.065
 
 # Red border HSV ranges (OpenCV H: 0-180)
 RED_LOWER1 = (0, 70, 50)

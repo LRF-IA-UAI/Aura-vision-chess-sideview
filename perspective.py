@@ -140,8 +140,22 @@ class PerspectiveCorrector:
         mask = self.detect_red_mask(image)
         red_corners = self.find_red_corners(mask)
         if red_corners is not None:
-            matrix = cv2.getPerspectiveTransform(red_corners, self.dst_points)
-            self.border_margin = BORDER_MARGIN
+            # Bake the border crop directly into the perspective matrix
+            # so that both image warp and YOLO coordinate mapping align with the inner 8x8 squares.
+            M = BORDER_MARGIN
+            if M > 0 and M < 0.5:
+                d = self.board_size * (M / (1.0 - 2 * M))
+                adjusted_dst = np.array([
+                    [-d, -d],
+                    [self.board_size + d, -d],
+                    [self.board_size + d, self.board_size + d],
+                    [-d, self.board_size + d]
+                ], dtype=np.float32)
+            else:
+                adjusted_dst = self.dst_points
+
+            matrix = cv2.getPerspectiveTransform(red_corners, adjusted_dst)
+            self.border_margin = 0.0  # The matrix now handles the crop
             return red_corners, matrix, "borde rojo"
 
         raise ValueError("No se pudieron detectar ni las casillas ni el borde rojo. Asegurate de que la iluminacion sea buena.")
