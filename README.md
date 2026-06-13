@@ -76,6 +76,3 @@ Adjust variables in `config.py` to match your physical setup:
 - `BORDER_MARGIN`: The fraction of the board representing the red border, baked into the transformation matrix (default: `0.065`).
 - `RED_LOWER` / `RED_UPPER`: HSV bounds for detecting the red calibration border.
 - `CAMERA_INDEX`: Default OpenCV camera index (default: `0`).
-
-## License
-MIT License.
