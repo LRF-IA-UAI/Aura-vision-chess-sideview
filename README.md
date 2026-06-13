@@ -77,14 +77,5 @@ Adjust variables in `config.py` to match your physical setup:
 - `RED_LOWER` / `RED_UPPER`: HSV bounds for detecting the red calibration border.
 - `CAMERA_INDEX`: Default OpenCV camera index (default: `0`).
 
-## Troubleshooting
-
-- **Pieces misaligned (e.g., Knight jumps to the next square):**
-  Ensure the calibration grid perfectly aligns with the physical squares. If using the red border method, adjust the `BORDER_MARGIN` in `config.py` or use the `+`/`-` keys during execution.
-- **Incorrect piece classification (e.g., Pawn detected as Queen):**
-  This is a model limitation based on lighting/angles. Save frames where this occurs, label them, and retrain the model using the provided scripts.
-- **Calibration fails:**
-  Ensure the board is well-lit and not heavily obstructed by shadows. If the red border is not being found, you may need to adjust the HSV values in `config.py`.
-
 ## License
 MIT License.
